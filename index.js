@@ -18,6 +18,8 @@ const Stations = require('abundance/station-renderer')
 const Emoji = require('abundance/emoji-styles')
 const Icons = require('abundance/icons-by-name')
 
+const Dates = require('tre-dates')
+
 client( (err, ssb, config) => {
   console.log('config', config)
   if (err) return console.error(err)
@@ -55,6 +57,7 @@ client( (err, ssb, config) => {
   const renderStation = Stations(ssb, {
     renderEntry: render
   })
+  const renderDate = Dates(ssb)
 
   const iconByName = Icons(ssb, config)
   const emojiStyles = Emoji(ssb, config)
@@ -67,6 +70,7 @@ client( (err, ssb, config) => {
     .use(renderStylesheet)
     .use(renderFolder)
     .use(renderStation)
+    .use(renderDate)
     .use(function(kv, ctx) {
       if (!kv) return
       if (kv.value.content.type !== 'folder') return
