@@ -17,6 +17,7 @@
     "dayjs": "^1.8.13",
     "sodium-native": "^2.2.6",
     "ssb-revisions": "^1.2.1",
+    "tre-calendar": "^1.0.0",
     "tre-client": "^2.2.0",
     "tre-dates": "^1.0.0",
     "tre-fonts": "^1.6.1",

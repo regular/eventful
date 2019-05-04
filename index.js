@@ -19,6 +19,7 @@ const Emoji = require('abundance/emoji-styles')
 const Icons = require('abundance/icons-by-name')
 
 const Dates = require('tre-dates')
+const Calendar = require('tre-calendar')
 
 client( (err, ssb, config) => {
   console.log('config', config)
@@ -58,6 +59,7 @@ client( (err, ssb, config) => {
     renderEntry: render
   })
   const renderDate = Dates(ssb)
+  const renderCalendar = Calendar(ssb)
 
   const iconByName = Icons(ssb, config)
   const emojiStyles = Emoji(ssb, config)
@@ -71,6 +73,7 @@ client( (err, ssb, config) => {
     .use(renderFolder)
     .use(renderStation)
     .use(renderDate)
+    .use(renderCalendar)
     .use(function(kv, ctx) {
       if (!kv) return
       if (kv.value.content.type !== 'folder') return
