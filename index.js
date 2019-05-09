@@ -6,6 +6,8 @@ const TwoRenderStacks = require('abundance/two-render-stacks')
 const Abundance = require('abundance')
 const pull = require('pull-stream')
 
+const CalendarPanel = require('tre-calendar-panel')
+
 require('brace/theme/solarized_dark')
 
 const Images = require('tre-images')
@@ -82,12 +84,18 @@ client( (err, ssb, config) => {
     })
 
   document.head.appendChild(emojiStyles())
-  document.body.appendChild(Abundance(ssb, config, {
+
+  const abundance = Abundance(ssb, config, {
     ace: {
       theme: 'ace/theme/solarized_dark',
     },
     importer,
     render
-  }))
+  })
+
+  abundance.addWidget('foo', ()=>h('div', 'bar'))
+  abundance.addWidget('Calendar', CalendarPanel(ssb, iconByName))
+
+  document.body.appendChild(abundance)
 })
 
